@@ -61,6 +61,7 @@ Try out our notebook CUDA_pricer_demo.ipynb to utilise PyTorch and Nvidia CUDA f
 Monte-Carlo simulation is square root convergent. Therefore a 100x increase in speed (ie. simulations per second) will result in an answer which is 10x more accurate. We saw a massive increase in computational speed using GPU and optimised Matrix Multiplication Libraries (NumPy Optimized) which translates to more accurate prices for the same amount of time.
 
 GPU Used: Nvidia K80
+
 CPU Used: Intel Xeon 2.3 Ghz (2 threads)
 
 ![alt text](assets/full_bench.png)
