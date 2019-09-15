@@ -9,8 +9,8 @@ Barrier options are derivatives of an asset where payment depends on the price o
 This particular tool focuses on pricing an exotic barrier option where we cannot feasibly utilise analytical methods such as partial differential equations as the price conditions are too complicated.
 
 * The exotic barrier option is path-dependent such that payoff depends on the number of days where the price of the option exceeds the barrier. There are two such barriers, `First Barrier Level` and `Second Barrier Level`, with day counts `Counter1` and `Counter2` respectively.
-* Payoff resembles a Call Option, however it is more complex. Let S<sub>t</sub> be the share price at time t and K be the strike price. 
-* The cut-off points 100 and 150 days used for payoff can both be configured in the app with `Counter 1 Level` and `Counter 2 Level` (it was not necessary for these to be variables in the project description)
+* Payoff resembles a Call Option, however it is more complex. Let `S<sub>t</sub>` be the share price at time `t` and `K` be the strike price. 
+* The cut-off points `100` and `150` days used for payoff can both be configured in the app with `Counter 1 Level` and `Counter 2 Level` (it was not necessary for these to be variables in the project description)
 
 Payoff is as follows:
 ![alt text](assets/payoff_desc.png)
