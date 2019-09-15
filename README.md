@@ -60,6 +60,15 @@ Try out our notebook CUDA_pricer_demo.ipynb to utilise PyTorch and Nvidia CUDA f
 ## Performance
 Monte-Carlo simulation is square root convergent. Therefore a 100x increase in speed (ie. simulations per second) will result in an answer which is 10x more accurate. We saw a massive increase in computational speed using GPU and optimised Matrix Multiplication Libraries (NumPy Optimized) which translates to more accurate prices for the same amount of time.
 
+GPU Used: Nvidia K80
+CPU Used: Intel Xeon 2.3 Ghz (2 threads)
+
 ![alt text](assets/full_bench.png)
 
 ![alt text](assets/part_bench.png)
+
+We see some improvement by using the GPU however we should also note that PyTorch can be used for matrix multiplication on multiple threads of a CPU and hence we should also test a multicore CPU similar in price to an Nvidia K80 for a fair comaprison as the Google Collab Machine was supplied with 1 core (two threads).
+
+What is interesting is the performance of the GPU is not perfectly linear, as the matrix sizes increase, the time taken per simulation actually drops (as opposed to increasing linearly with other methods). This result shows that GPU is more efficient with larger matrices.
+
+There is plenty of room for optimisation here, especially since the final, discounted prices are always computed using CPU due to the complex payoff function.
