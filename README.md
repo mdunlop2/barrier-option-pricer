@@ -39,20 +39,26 @@ python app.py
 Open a web browser and enter: `0.0.0.0:8050/`
 
 ## Pricing Methods
-There are two pricing methods implemented in the application, stored in ​ pricing_functions.py​ :
+There are two pricing methods implemented in the application, stored in `pricing_functions.py` :
 ### Crude Monte Carlo:
 Crude Monte Carlo is the simplest implementation, simply creating a matrix of random normal variables called
 rand to represent the share price change over each time step. This way, the price of the share at each time step is
-stored in ​ S_val​ and the number of times it crosses each barrier can be recorded, ​ counter1​ and ​ counter2​ .
+stored in `S_val` and the number of times it crosses each barrier can be recorded, `counter1` and `counter2`.
+
 The payoff for the option is then calculated using the number of times the share passed each barrier and the share
-payoff at maturity, using ​ compiled ​ C code in ​ payoff_function.pyx​ . This is discounted to present value at risk
-free rate ​ r in ​ PDisc and the estimated price is the mean of this array’s first column. Standard deviation of the price
+payoff at maturity, using `master_pricing_function.py` . This is discounted to present value at risk
+free rate `r` and the estimated price is the mean of this array’s first column. Standard deviation of the price
 and counters are also returned to the user.
 
 ### Antithetic Variates Technique Monte Carlo : (AVT)
 AVT differs from Crude Monte Carlo in that for each random normal variate in the matrix, its negative counterpart is
-also included, reducing standard deviation and compute time.
+also included, halving standard deviation of generated prices and compute time. This gives a more realistic approximation of the riskiness of the asset.
 
+## GPU implementation
+Try out our notebook CUDA_pricer_demo.ipynb to utilise PyTorch and Nvidia CUDA for over 126x speed improvement. The notebook is designed to be run in Google Collab, which offers a GPU for free (for 12 hours).
+
+## Performance
+Monte-Carlo simulation is square root convergent. Therefore a 100x increase in speed (ie. simulations per second) will result in an answer which is 10x more accurate. We saw a massive increase in computational speed using GPU and optimised Matrix Multiplication Libraries (NumPy Optimized) which translates to more accurate prices for the same amount of time.
 
 ![alt text](assets/full_bench.png)
 
