@@ -9,7 +9,7 @@ Barrier options are derivatives of an asset where payment depends on the price o
 This particular tool focuses on pricing an exotic barrier option where we cannot feasibly utilise analytical methods such as partial differential equations as the price conditions are too complicated.
 
 * The exotic barrier option is path-dependent such that payoff depends on the number of days where the price of the option exceeds the barrier. There are two such barriers, `First Barrier Level` and `Second Barrier Level`, with day counts `Counter1` and `Counter2` respectively.
-* Payoff resembles a Call Option, however it is more complex. Let (S<sub>t</sub>) be the share price at time t and K be the strike price. 
+* Payoff resembles a Call Option, however it is more complex. Let S<sub>t</sub> be the share price at time t and K be the strike price. 
 * The cut-off points 100 and 150 days used for payoff can both be configured in the app with `Counter 1 Level` and `Counter 2 Level` (it was not necessary for these to be variables in the project description)
 
 Payoff is as follows:
@@ -39,7 +39,19 @@ python app.py
 Open a web browser and enter: `0.0.0.0:8050/`
 
 ## Pricing Methods
+There are two pricing methods implemented in the application, stored in ​ pricing_functions.py​ :
+### Crude Monte Carlo:
+Crude Monte Carlo is the simplest implementation, simply creating a matrix of random normal variables called
+rand to represent the share price change over each time step. This way, the price of the share at each time step is
+stored in ​ S_val​ and the number of times it crosses each barrier can be recorded, ​ counter1​ and ​ counter2​ .
+The payoff for the option is then calculated using the number of times the share passed each barrier and the share
+payoff at maturity, using ​ compiled ​ C code in ​ payoff_function.pyx​ . This is discounted to present value at risk
+free rate ​ r in ​ PDisc and the estimated price is the mean of this array’s first column. Standard deviation of the price
+and counters are also returned to the user.
 
+### Antithetic Variates Technique Monte Carlo : (AVT)
+AVT differs from Crude Monte Carlo in that for each random normal variate in the matrix, its negative counterpart is
+also included, reducing standard deviation and compute time.
 
 
 ![alt text](assets/full_bench.png)
