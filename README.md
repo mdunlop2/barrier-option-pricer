@@ -16,8 +16,6 @@ Payoff is as follows:
 ![alt text](assets/payoff_desc.png)
 
 ## Setup:
-Install the required packages in `requirement.txt`
-
 Creating a new virtual environement is recommended.
 
 ```
@@ -28,8 +26,8 @@ conda activate object_detection
 Git clone the repo and change directory into it. Then pip install the packages in `requirement.txt`.
 ```
 cd directory/you/want/to/clone/into
-git clone https://github.com/cloud-annotations/object-detection-python.git
-cd object-detection-python
+git clone https://github.com/mdunlop2/barrier-option-pricer.git
+cd barrier-option-pricer
 pip install -r requirement.txt
 ```
 Now test the application:
@@ -50,7 +48,7 @@ payoff at maturity, using `master_pricing_function.py` . This is discounted to p
 free rate `r` and the estimated price is the mean of this array’s first column. Standard deviation of the price
 and counters are also returned to the user.
 
-### Antithetic Variates Technique Monte Carlo : (AVT)
+### Antithetic Variates Technique Monte Carlo: (AVT)
 AVT differs from Crude Monte Carlo in that for each random normal variate in the matrix, its negative counterpart is
 also included, halving standard deviation of generated prices and compute time. This gives a more realistic approximation of the riskiness of the asset.
 
