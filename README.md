@@ -19,8 +19,8 @@ Payoff is as follows:
 Creating a new virtual environement is recommended.
 
 ```
-conda create -n object_detection python=3.7
-conda activate object_detection
+conda create -n new_env python=3.7
+conda activate new_env
 ```
 
 Git clone the repo and change directory into it. Then pip install the packages in `requirement.txt`.
